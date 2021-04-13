@@ -12,11 +12,9 @@ function App() {
 			try {
 				const url = 'https://breakingbadapi.com/api/characters';
 				const result = await axios.get(url);
-				// console.log(result.data);
 				setMovieData(result.data);
 			} catch (error) {
-				// console.log(error);
-				setMovieData(error);
+				console.log(error);
 			}
 		})();
 	}, []);

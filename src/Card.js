@@ -11,4 +11,3 @@ export default function Card({ movie }) {
 		</div>
 	);
 }
-// Please can you start all over here?
