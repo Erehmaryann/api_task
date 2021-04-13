@@ -1,13 +1,33 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LandingPage from './LandingPage';
 import Cards from './Cards';
 
 function App() {
+	const [ movieData, setMovieData ] = useState(null);
+
+	useEffect(() => {
+		(async () => {
+			try {
+				const url = 'https://breakingbadapi.com/api/characters';
+				const result = await axios.get(url);
+				console.log(result.data);
+				setMovieData(result.data);
+			} catch (error) {
+				console.log(error);
+			}
+		})();
+	}, []);
 	return (
 		<Router>
 			<Switch>
-				<Route component={LandingPage} path="/" exact />
-				<Route component={Cards} path="/cards" exact />
+				<Route path="/" exact>
+					<LandingPage movieData={movieData} />
+				</Route>
+				<Route path="/cards" exact>
+					<Cards />
+				</Route>
 			</Switch>
 		</Router>
 	);
