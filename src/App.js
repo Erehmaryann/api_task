@@ -12,10 +12,11 @@ function App() {
 			try {
 				const url = 'https://breakingbadapi.com/api/characters';
 				const result = await axios.get(url);
-				console.log(result.data);
+				// console.log(result.data);
 				setMovieData(result.data);
 			} catch (error) {
-				console.log(error);
+				// console.log(error);
+				setMovieData(error);
 			}
 		})();
 	}, []);
@@ -26,7 +27,7 @@ function App() {
 					<LandingPage movieData={movieData} />
 				</Route>
 				<Route path="/cards" exact>
-					<Cards />
+					<Cards movieData={movieData} />
 				</Route>
 			</Switch>
 		</Router>
